@@ -1,6 +1,12 @@
-// Import stylesheets
-import './style.css';
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 5000;
+const myLiffId = process.env.MY_LIFF_ID;
 
-// Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
+app.use(express.static('public'));
+
+app.get('/send-id', function(req, res) {
+    res.json({id: myLiffId});
+});
+
+app.listen(port, () => console.log(`app listening on port ${port}!`));
